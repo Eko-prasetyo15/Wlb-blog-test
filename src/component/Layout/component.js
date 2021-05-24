@@ -3,9 +3,6 @@ import PropTypes from "prop-types";
 import Navbar from "../../partial/Navbar"
 import Footer from "../../partial/footer"
 
-// import Header from "./Header";
-// import Footer from "./Footer";
-
 const propTypes = {
     children: PropTypes.node.isRequired,
 };

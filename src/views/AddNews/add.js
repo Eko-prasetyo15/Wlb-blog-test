@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { postData } from "./action"
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';

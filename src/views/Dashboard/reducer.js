@@ -2,7 +2,7 @@ import { ACTIONS } from "../../ActionType";
 
 const initialState = {
     datas: [],
-    isDelete: false
+    isDeleted: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -12,7 +12,6 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 datas: action.data
-                // totalData: action.data.meta.totalCount,
             };
         case DELETE_DATA_SUCCESS:
             return { ...state, isDeleted: action.data };

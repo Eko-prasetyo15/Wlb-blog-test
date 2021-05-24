@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import ModalCont from "../../partial/modal"
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
@@ -41,9 +41,7 @@ const ListTable = (props) => {
             <TextField
                 id="outlined-full-width"
                 label="Title"
-                // style={{ margin: 4 }}
                 placeholder="Input Title"
-                // helperText="Full width!"
                 fullWidth
                 margin="normal"
                 InputLabelProps={{
@@ -59,9 +57,7 @@ const ListTable = (props) => {
                 multiline
                 fullWidth
                 rows={12}
-                // defaultValue="
                 variant="outlined"
-                // style={{ margin: 4 }}
                 onChange={props.onChangeDescription}
                 defaultValue={props.body}
             />
@@ -99,7 +95,7 @@ return (
             </StyledTableCell>
         </StyledTableRow>
         <ModalCont
-            id={props.id}
+            Id={props.id}
             title={props.title}
             body={props.body}
             header={"Edit Blog Detail"}

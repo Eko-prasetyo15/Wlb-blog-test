@@ -42,7 +42,8 @@ export const updateData = (id, description) => {
             .mutate({ mutation, variables })
             .then((response) => {
                 dispatch(updateDataSuccess(response.data.updatePost));
-                alert("Data Berhasil dikirim")
+                alert("Data Berhasil dirubah")
+                window.location.reload()
             })
             .catch((err) => {
                 dispatch(updateDataFailure(err));
@@ -52,7 +53,7 @@ export const updateData = (id, description) => {
 };
 
 export const deleteData = (id) => {
-    alert("apakah anda yakin ?")
+    alert("Yakin Ingin Menghapus Data ?")
     const mutation = gql`
 mutation (
   $id: ID!
@@ -69,6 +70,7 @@ mutation (
             .then((response) => {
                 dispatch(deleteDataSuccess(response.data.deletePost));
                 alert("Data Berhasil Dihapus")
+                window.location.reload()
             })
             .catch((err) => {
                 dispatch(deleteDataFailure(err));

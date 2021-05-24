@@ -13,7 +13,6 @@ const loadDataFailure = () => ({
 });
 
 export const loadData = (page, limit) => {
-    console.log("masuk actions")
     const query = gql`
     query($options: PageQueryOptions) {
       posts(options: $options) {

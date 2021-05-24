@@ -1,6 +1,5 @@
 import React from "react"
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Fade from '@material-ui/core/Fade';
 import Modal from '@material-ui/core/Modal';
@@ -24,7 +23,8 @@ const ModalCont = (props) => {
     const classes = modalStyles();
     return (
         <Modal
-            id={props.id}
+            key={props.Id}
+            id={props.Id}
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
             className={classes.modal}
@@ -36,13 +36,13 @@ const ModalCont = (props) => {
                 timeout: 500,
             }}
         >
-            <Fade in={props.open}>
+            <Fade in={props.open} key={props.Id}>
                 <div className={classes.paper}>
-                    <i class="fa fa-times-circle justify-content-right" aria-hidden="true" onClick={props.handleClose} style={{cursor: "pointer"}}></i>
-                    <h2 class="text-center mb-3" id="transition-modal-title">{props.header}</h2>
+                    <i className="fa fa-times-circle justify-content-right" aria-hidden="true" onClick={props.handleClose} style={{ cursor: "pointer" }}></i>
+                    <h2 className="text-center mb-3" id="transition-modal-title">{props.header}</h2>
                     {props.body}
                     <Button variant="outlined" color="primary" onClick={props.onSubmit} style={{ margin: 8 }}>
-                        Submit
+                        Send
                     </Button>
                 </div>
             </Fade>

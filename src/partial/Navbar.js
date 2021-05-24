@@ -8,7 +8,7 @@ const Navbar = () => {
             <ul>
                 {routes.map((e, i) => {
                     return (
-                        <Link to={e.path}>
+                        <Link to={e.path} key={i}>
                             <li>{e.name}</li>
                         </Link>
                     )

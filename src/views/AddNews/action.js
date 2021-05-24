@@ -24,16 +24,15 @@ export const postData = (title, description) => {
 }
   `;
     const variables = {
-        input: { title, body : description},
+        input: { title, body: description },
     };
     return (dispatch) => {
         return client
-            .mutate({ mutation, variables})
+            .mutate({ mutation, variables })
             .then((response) => {
-                console.log(response.data.createPost, "action")
                 dispatch(PostDataSuccess(response.data.createPost));
                 alert("Data Berhasil Dikirim")
-                // window.location = "/";
+                window.location = "/";
             })
             .catch((err) => {
                 dispatch(PostDataFailure(err));

@@ -11,18 +11,21 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Pagination from "../../partial/pagination";
+import Filter from "../../partial/filter"
 
 const Dashboard = () => {
     const dispatch = useDispatch()
 
     const stateData = useSelector((state) => state.dataPost.datas)
     const stateTotal = useSelector((state) => state.dataPost.totalData)
-    const stateDelete = useSelector((state) => state.dashboardHandle.isDeleted) 
-    const stateUpdate = useSelector((state) => state.dashboardHandle.datas)
 
     const [updatePage, setUpdatePage] = useState(1)
     const [limit, setLimit] = useState(5)
+    const [updateSearch, setUpdateSearch] = useState('')
 
+    const handleSearchChange = (e) => {
+        setUpdateSearch(e.target.value);
+    }
     const handleClick = (e, i) => {
         e.preventDefault()
         setUpdatePage(i)
@@ -42,9 +45,7 @@ const Dashboard = () => {
         pageNum.push(i)
     }
 
-    let Limitted = []
     const pageNumber = pageNum.slice(0, limit).map((item, index) => {
-        Limitted.push(index)
         return (
             <li key={item}
                 onClick={(e) => handleClick(e, item)}
@@ -53,7 +54,7 @@ const Dashboard = () => {
             </li>
         );
     });
-  
+
     const StyledTableCell = withStyles((theme) => ({
         head: {
             backgroundColor: theme.palette.common.black,
@@ -84,11 +85,17 @@ const Dashboard = () => {
         dispatch(loadData(updatePage, limit))
     }, [dispatch, updatePage, limit])
 
-    const DataList = stateData.map((item, index) => {
+    const dataNew = stateData && stateData.filter(
+        (item) =>
+            item.title.toLowerCase().includes(updateSearch) ||
+            item.body.toLowerCase().includes(updateSearch) 
+    )
+
+    const DataList = dataNew.map((item, index) => {
         return (
             <ListTable
                 key={index}
-                id={item.id} index={index + 1}
+                id={item.id}
                 title={item.title}
                 body={item.body}
                 tableCell={StyledTableCell}
@@ -99,11 +106,14 @@ const Dashboard = () => {
     return (
         <>
             <div>
+                <Filter
+                onChange={handleSearchChange}
+                val={updateSearch}
+                />
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                {/* <StyledTableCell>Dessert (100g serving)</StyledTableCell> */}
                                 <StyledTableCell align="left">No</StyledTableCell>
                                 <StyledTableCell align="left">Title</StyledTableCell>
                                 <StyledTableCell align="left">Description</StyledTableCell>
